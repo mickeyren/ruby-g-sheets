@@ -31,7 +31,7 @@ namespace '/api' do
     uri = URI.parse('https://my.talkpush.com/api/talkpush_services/campaigns/1/campaign_invitations')
 
     header = { 'Cache-Control': 'no-cache', 'Content-Type': 'application/json' }
-    params = { 
+    data = { 
       api_key: '4ey: 448530ba23eef6b45ffbc95d',
       api_secret: 'eet: ee2f724ba060f82ddf58923a',
       campaign_invitation: {
@@ -45,7 +45,7 @@ namespace '/api' do
     # Create the HTTP objects
     http = Net::HTTP.new(uri.host, uri.port)
     request = Net::HTTP::Post.new(uri.request_uri, header)
-    request.body = params.to_json
+    request.body = data.to_json
 
     # Send the request
     response = http.request(request)
