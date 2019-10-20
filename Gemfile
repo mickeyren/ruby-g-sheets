@@ -6,6 +6,8 @@ gem 'puma'
 
 gem 'sinatra'
 
+gem 'rake'
+
 # Required to use some advanced features of# Sinatra, like namespaces
 gem 'sinatra-contrib'
 
