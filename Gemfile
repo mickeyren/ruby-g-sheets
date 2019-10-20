@@ -9,4 +9,7 @@ gem 'sinatra'
 # Required to use some advanced features of# Sinatra, like namespaces
 gem 'sinatra-contrib'
 
-gem "google_drive", "~> 3.0"
+gem 'pg'
+
+# The Database Toolkit for Ruby
+gem 'sequel'
