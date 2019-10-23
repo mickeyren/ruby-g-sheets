@@ -28,7 +28,7 @@ namespace '/api' do
       timestamp: params[:timestamp])
 
     # talkpush
-    uri = URI.parse('https://my.talkpush.com/api/talkpush_services/campaigns/1/campaign_invitations')
+    uri = URI.parse('https://my.talkpush.com/api/talkpush_services/campaigns/3929/campaign_invitations')
 
     header = { 'Cache-Control': 'no-cache', 'Content-Type': 'application/json' }
     data = {
@@ -49,7 +49,7 @@ namespace '/api' do
 
     # Send the request
     response = http.request(request)
-
+    puts response.body
     halt(200, response.to_json)
   end
 end

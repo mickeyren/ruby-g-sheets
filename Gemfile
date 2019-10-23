@@ -15,3 +15,5 @@ gem 'pg'
 
 # The Database Toolkit for Ruby
 gem 'sequel'
+
+gem 'rerun'
