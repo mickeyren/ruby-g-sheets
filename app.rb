@@ -17,9 +17,9 @@ namespace '/api' do
   end
 
   get '/candidates' do
-    DB = Sequel.connect(ENV['DATABASE_URL'] || 'postgres://davidang:@localhost:5432/ruby-g-sheets') 
+    DB = Sequel.connect(ENV['DATABASE_URL'] || 'postgres://davidang:@localhost:5432/ruby-g-sheets')
     dataset = DB[:users]
-    
+
     dataset.insert(
       first_name: params[:first_name],
       last_name: params[:last_name],
@@ -31,9 +31,9 @@ namespace '/api' do
     uri = URI.parse('https://my.talkpush.com/api/talkpush_services/campaigns/1/campaign_invitations')
 
     header = { 'Cache-Control': 'no-cache', 'Content-Type': 'application/json' }
-    data = { 
-      api_key: '4ey: 448530ba23eef6b45ffbc95d',
-      api_secret: 'eet: ee2f724ba060f82ddf58923a',
+    data = {
+      api_key: '48530ba23eef6b45ffbc95d7c20a60b9',
+      api_secret: 'e2f724ba060f82ddf58923af494578a7',
       campaign_invitation: {
         first_name: params[:first_name],
         last_name: params[:last_name],
