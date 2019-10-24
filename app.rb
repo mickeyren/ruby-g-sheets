@@ -32,8 +32,8 @@ namespace '/api' do
 
     header = { 'Cache-Control': 'no-cache', 'Content-Type': 'application/json' }
     data = {
-      api_key: '48530ba23eef6b45ffbc95d7c20a60b9',
-      api_secret: 'e2f724ba060f82ddf58923af494578a7',
+      api_key: ENV['TALKPUSH_API_KEY'],
+      api_secret: ENV['TALKPUSH_SECRET_KEY'],
       campaign_invitation: {
         first_name: params[:first_name],
         last_name: params[:last_name],
@@ -50,7 +50,7 @@ namespace '/api' do
 
     # Send the request
     response = http.request(request)
-    puts response.body
+
     halt(200, response.to_json)
   end
 end
