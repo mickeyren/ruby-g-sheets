@@ -6,11 +6,6 @@ require 'net/http'
 require 'uri'
 require 'json'
 
-
-class Application < Sinatra::Base
-
-end
-
 namespace '/api' do
   before do
     content_type 'application/json'
