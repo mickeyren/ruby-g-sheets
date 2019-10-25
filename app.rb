@@ -1,10 +1,11 @@
 require 'sinatra'
 require 'sinatra/namespace'
 require 'sequel'
-
 require 'net/http'
 require 'uri'
 require 'json'
+
+DB = Sequel.connect(ENV['DATABASE_URL'] || 'postgres://davidang:@localhost:5432/ruby-g-sheets')
 
 namespace '/api' do
   before do
@@ -12,17 +13,23 @@ namespace '/api' do
   end
 
   get '/candidates' do
-    DB = Sequel.connect(ENV['DATABASE_URL'] || 'postgres://davidang:@localhost:5432/ruby-g-sheets')
-    dataset = DB[:users]
+    insert_record
+    response = send_to_talkpush
 
+    halt(200, response.to_json)
+  end
+
+  def insert_record
+    dataset = DB[:users]
     dataset.insert(
       first_name: params[:first_name],
       last_name: params[:last_name],
       email: params[:email],
       phone: params[:phone],
       timestamp: params[:timestamp])
+  end
 
-    # talkpush
+  def send_to_talkpush
     uri = URI.parse('https://my.talkpush.com/api/talkpush_services/campaigns/3929/campaign_invitations')
 
     header = { 'Cache-Control': 'no-cache', 'Content-Type': 'application/json' }
@@ -43,9 +50,8 @@ namespace '/api' do
     request = Net::HTTP::Post.new(uri.request_uri, header)
     request.body = data.to_json
 
-    # Send the request
     response = http.request(request)
 
-    halt(200, response.to_json)
+    return response
   end
 end
