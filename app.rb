@@ -17,6 +17,8 @@ namespace '/api' do
     response = send_to_talkpush
 
     halt(200, response.to_json)
+  rescue StandardError => e
+    halt(500, e.message)
   end
 
   def insert_record
